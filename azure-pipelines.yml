@@ -1,0 +1,29 @@
+trigger: none
+
+pr:
+  - master
+
+jobs:
+  - job: firstJob
+    condition: ne(variables['Build.Reason'], 'PullRequest')
+    steps:
+      - task: Bash@3
+        inputs:
+          targetType: inline
+          script: echo "THIS IS FIRST JOB"
+  - job: secondJob
+#     condition: always()
+    steps:
+      - task: Bash@3
+        displayName: secondJobBash
+        inputs:
+          targetType: inline
+          script: echo "THIS IS SECOND JOB"
+  - job: thirdJob
+#     condition: always()
+    steps:
+      - task: Bash@3
+        displayName: thirdJobBash
+        inputs:
+          targetType: inline
+          script: echo "THIS IS THIRD JOB"    
